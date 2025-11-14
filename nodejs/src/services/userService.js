@@ -30,9 +30,9 @@ let handleUserLogin = (email, password) => {
           //compare password
 
           let check = await bcrypt.compareSync(password, user.password);
-          console.log(check);
-          console.log(password);
-          console.log(user.password);
+          // console.log(check);
+          // console.log(password);
+          // console.log(user.password);
           if (check) {
             userData.errCode = 0;
             (userData.errMessage = "Oke"), delete user.password;
@@ -107,22 +107,23 @@ let createNewUser = (data) => {
           errCode: 1,
           errMessage: "Your email is already in used, Plz try another email!",
         });
+      } else {
+        let hashPasswrodFromBcrypt = await hashUserPassword(data.password);
+        await db.User.create({
+          email: data.email,
+          password: hashPasswrodFromBcrypt,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          phonenumber: data.phonenumber,
+          gender: data.gender == "1" ? true : false,
+          roleId: data.roleId,
+        });
+        resolve({
+          errCode: 0,
+          Message: "OK",
+        });
       }
-      let hashPasswrodFromBcrypt = await hashUserPassword(data.password);
-      await db.User.create({
-        email: data.email,
-        password: hashPasswrodFromBcrypt,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        address: data.address,
-        phonenumber: data.phonenumber,
-        gender: data.gender == "1" ? true : false,
-        roleId: data.roleId,
-      });
-      resolve({
-        errCode: 0,
-        errMessage: "OK",
-      });
     } catch (e) {
       reject(e);
     }
