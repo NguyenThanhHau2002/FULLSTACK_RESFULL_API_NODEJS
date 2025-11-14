@@ -102,10 +102,10 @@ let createNewUser = (data) => {
     try {
       //check email is exist ??
       let check = await checkUserEmai(data.email);
-      if (check == true) {
+      if (check === true) {
         resolve({
           errCode: 1,
-          message: "Your email is already in used, Plz try another email!",
+          errMessage: "Your email is already in used, Plz try another email!",
         });
       }
       let hashPasswrodFromBcrypt = await hashUserPassword(data.password);
@@ -121,7 +121,7 @@ let createNewUser = (data) => {
       });
       resolve({
         errCode: 0,
-        message: "OK",
+        errMessage: "OK",
       });
     } catch (e) {
       reject(e);
