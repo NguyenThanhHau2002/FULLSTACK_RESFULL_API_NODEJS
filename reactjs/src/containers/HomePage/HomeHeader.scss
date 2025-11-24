@@ -47,29 +47,43 @@
         display: flex;
         padding-right: 50px;
         align-items: center;
-        i{
+        i {
           font-size: 15px;
           margin-right: 5px;
         }
       }
       .language-vi {
         cursor: pointer;
-        &.active{
-          color: #e04e0a;
+        opacity: 0.2;
+        &.active {
+          opacity: 1;
+          span {
+            color: #e04e0a;
+          }
+        }
+        &:hover {
+          opacity: 0.8;
         }
       }
       .language-en {
         margin: 0 10px;
+        opacity: 0.2;
         cursor: pointer;
-        &.active{
-          color: #0b30d4;
+        &.active {
+          opacity: 1;
+          span {
+            color: #0b30d4;
+          }
+        }
+        &:hover {
+          opacity: 0.8;
         }
       }
     }
   }
 }
 .home-header-banner {
-  background-image: url("../../assets/header_backround.jpg");
+  background-image: url("../../assets/header.webp");
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px;
